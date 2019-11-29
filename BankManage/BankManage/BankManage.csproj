@@ -115,6 +115,7 @@
     <Compile Include="MoneyInfo.cs">
       <DependentUpon>BankModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="money\CustomWhole.cs" />
     <Compile Include="query\DayQuery.xaml.cs">
       <DependentUpon>DayQuery.xaml</DependentUpon>
     </Compile>

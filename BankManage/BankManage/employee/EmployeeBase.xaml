@@ -5,9 +5,20 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-	Title="EmployeeBase">
+	Title="EmployeeBase" >
+    <StackPanel>
+        <DataGrid Name="dataGrid" AutoGenerateColumns="False"
+                Background="#FFDDFBF9">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="员工号" Binding="{Binding EmployeeNo}" Width="50" CanUserReorder="False" CanUserResize="False" CanUserSort="False" />
+                <DataGridTextColumn Header="员工姓名" Binding="{Binding EmployeeName}" Width="*" />
+                <DataGridTextColumn Header="性别" Binding="{Binding sex}" Width="50" />
+                <DataGridTextColumn Header="入职日期" Binding="{Binding workDate}" Width="*" />
+                <DataGridTextColumn Header="联系方式" Binding="{Binding telphone}" Width="*" />
+                <DataGridTextColumn Header="身份证号" Binding="{Binding idCard}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="保存" Width="70" Margin="0 10 0 0" Click="Button_Click"/>
+    </StackPanel>
 
-    <Grid>
-        
-    </Grid>
 </Page>

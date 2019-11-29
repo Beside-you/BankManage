@@ -7,7 +7,15 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="ChangePay">
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <DataGrid Name="dataGrid1" AutoGenerateColumns="False"
+                Background="#FFDDFBF9">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="员工号" Binding="{Binding EmployeeNo}" Width="150" CanUserReorder="False" CanUserResize="False" />
+                <DataGridTextColumn Header="员工姓名" Binding="{Binding EmployeeName}" Width="*" />
+                <DataGridTextColumn Header="工资" Binding="{Binding salary}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="保存" Width="70" Margin="0 10 0 0" Click="Button_Click" />
+    </StackPanel>
 </Page>

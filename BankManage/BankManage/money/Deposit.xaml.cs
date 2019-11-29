@@ -21,6 +21,7 @@ namespace BankManage.money
     /// </summary>
     public partial class Deposit : Page
     {
+        //TODO:定期，零存整取类账户特别对待
         public Deposit()
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace BankManage.money
         {
             //根据操作账号id实例化对应的操作信息记录类
             Custom custom = DataOperation.GetCustom(this.txtAccount.Text);
+
             //若未找到对应账户信息
             if (custom == null)
             {

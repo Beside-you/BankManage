@@ -21,10 +21,12 @@ namespace BankManage.rateManage
     public partial class ratePage : Page
     {
         BankEntities context = new BankEntities();
+
         public ratePage()
         {
             InitializeComponent();
             this.Unloaded += ratePage_Unloaded;
+            //查询利率设置信息
             var q = from t in context.RateInfo
                     select t;
             dataGrid1.ItemsSource = q.ToList();

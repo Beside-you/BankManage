@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using BankManage;
+using BankManage.money;
 
 namespace BankManage.common
 {
@@ -57,6 +58,7 @@ namespace BankManage.common
                     break;
                 case "零存整取":
                     //创建零存整取类
+                    custom = new CustomWhole();
                     break;
             }
             custom.AccountInfo.accountType = accountType;

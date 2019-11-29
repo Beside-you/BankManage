@@ -8,6 +8,7 @@ namespace BankManage
 {
     public class CustomChecking : Custom
     {
+        /// <summary>
         /// 开户
         /// </summary>
         /// <param name="accountNumber">帐号</param>
