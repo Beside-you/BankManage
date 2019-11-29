@@ -24,7 +24,7 @@ namespace BankManage.query
         public TotalQuery()
         {
             InitializeComponent();
-            this.Unloaded += TotalQuery_Unloaded;
+            this.Unloaded += TotalQuery_Unloaded;//卸载页面时关闭实体数据模型实例
         }
 
         void TotalQuery_Unloaded(object sender, RoutedEventArgs e)
@@ -34,6 +34,7 @@ namespace BankManage.query
         //查询当前账号的所有记录信息
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            //查询对应账号的记录
             var query = from t in context.MoneyInfo
                         where t.accountNo == txtID.Text
                         select t;

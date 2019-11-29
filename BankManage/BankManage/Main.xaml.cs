@@ -19,6 +19,8 @@ namespace BankManage
     /// </summary>
     public partial class Main : Window
     {
+        //TODO:信息验证
+        //TODO:帮助模块，操作帮助
         public Main()
         {
             InitializeComponent();
@@ -28,7 +30,7 @@ namespace BankManage
         //根据点击的按钮显示对应页面
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //TODO:职员管理和工资调整页面
+            
             Button item = e.Source as Button;
             if (item != null)
             {

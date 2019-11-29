@@ -20,9 +20,34 @@ namespace BankManage.employee
     /// </summary>
     public partial class ChangePay : Page
     {
+        BankEntities context = new BankEntities();
         public ChangePay()
         {
             InitializeComponent();
+            this.Unloaded += ChangePay_Unloaded;
+
+            var q = from t in context.EmployeeInfo
+                    select t;
+            dataGrid1.ItemsSource = q.ToList();
+        }
+
+        public void ChangePay_Unloaded(object sender, RoutedEventArgs e)
+        {
+            context.Dispose();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                context.SaveChanges();
+                MessageBox.Show("成功保存");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "保存失败");
+
+            }
         }
     }
 }

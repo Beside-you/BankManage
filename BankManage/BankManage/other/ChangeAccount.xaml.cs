@@ -28,12 +28,16 @@ namespace BankManage.other
         //更改密码
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
+            //获取对应的信息记录
             var query = from t in context.AccountInfo
                         where t.accountNo == this.txtAccount.Text
                         select t;
+            //若存在记录
             if (query.Count() > 0)
             {
+                //取第一条记录信息
                 var q = query.First();
+                //修改密码
                 q.accountPass = this.txtNewPass.Password;
                 try
                 {
