@@ -9,7 +9,7 @@ namespace BankManage.money
 {
     class CustomWhole : Custom
     {
-        //TODO:起存100
+        
         public RateType type { get; set; }
         /// <summary>
         /// 开户
@@ -18,9 +18,8 @@ namespace BankManage.money
         /// <param name="money">开户金额</param>
         public override void Create(string accountNumber, double money)
         {
-            //TODO:利率选择，默认一年？定期存款同样问题！
+            //不结息
             base.Create(accountNumber, money);
-            
         }
 
         /// <summary>
@@ -28,10 +27,15 @@ namespace BankManage.money
         /// </summary>
         /// <param name="genTyep"></param>
         /// <param name="money"></param>
-        public override void Diposit(string genTyep, double money)
+        public override void Diposit(string genType, double money)
         {
-            base.Diposit("存款", money);
-            base.Diposit("结息", DataOperation.GetRate(RateType.零存整取1年) * money);
+            //TODO:起存五元，检测存款日期是否超出期限
+            base.Diposit(genType, money);
+        }
+
+        public override void Withdraw(double money)
+        {
+            
         }
     }
 }

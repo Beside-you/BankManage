@@ -14,6 +14,7 @@
           <Property Name="accountName" Type="nvarchar" MaxLength="20" />
           <Property Name="accountPass" Type="nvarchar" MaxLength="20" />
           <Property Name="accountType" Type="nvarchar" MaxLength="8" />
+          <Property Name="rateType" Type="nvarchar" MaxLength="8" />
         </EntityType>
         <EntityType Name="EmployeeInfo">
           <Key>
@@ -73,6 +74,7 @@
           <Property Name="accountName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="accountPass" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="accountType" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="rateType" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EmployeeInfo">
           <Key>
@@ -128,6 +130,7 @@
           <EntitySetMapping Name="AccountInfo">
             <EntityTypeMapping TypeName="BankModel.AccountInfo">
               <MappingFragment StoreEntitySet="AccountInfo">
+                <ScalarProperty Name="rateType" ColumnName="rateType" />
                 <ScalarProperty Name="accountNo" ColumnName="accountNo" />
                 <ScalarProperty Name="IdCard" ColumnName="IdCard" />
                 <ScalarProperty Name="accountName" ColumnName="accountName" />

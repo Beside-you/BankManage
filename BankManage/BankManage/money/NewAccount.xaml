@@ -38,7 +38,10 @@
             <ComboBox  Grid.Row="5" Grid.Column="1" Name="comboBoxAccountType" SelectionChanged="comboBoxAccountType_SelectionChanged"></ComboBox>
             <TextBlock Margin="7"  Grid.Row="6">开户金额：</TextBlock>
             <TextBox Name="txtMoney" Margin="5" Grid.Column="1"  Grid.Row="6"></TextBox>
-            <StackPanel Grid.Row="7" HorizontalAlignment="Center" Grid.ColumnSpan="2" Orientation="Horizontal" >
+
+            <TextBlock x:Name="rateTypeText" Margin="7,7,7,10"  Grid.Row="7">开户类型：</TextBlock>
+            <ComboBox  Grid.Row="7" Grid.Column="1" x:Name="RateTypeCom" Margin="0,0,0,10" Height="30"/>
+            <StackPanel Grid.Row="7" HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="1" Margin="10,46,92,-46" >
                 <Button Name="btnOk"  Width="50" Margin="10,10,2,10" Padding="3" Click="btnOk_Click">确定</Button>
                 <Button Name="btnCancel"  Width="50" Margin="2,10,10,10" Padding="3" Click="btnCancel_Click">取消</Button>
             </StackPanel>

@@ -44,7 +44,7 @@ namespace BankManage
             //开户信息插入到数据库
              try
              {
-                //将用户信息插入到数据库中
+                //将用户信息插入到实体数据模型中
                   context.AccountInfo.Add(AccountInfo);
                   context.SaveChanges();
                   success = true;
@@ -95,6 +95,7 @@ namespace BankManage
                 MessageBox.Show("取款金额不能为零或负值");
                 return false;
             }
+            //TODO:考虑利息
             if (money > AccountBalance)
             {
                 MessageBox.Show("取款数不能比余额大");
@@ -139,6 +140,15 @@ namespace BankManage
                 MessageBox.Show("添加交易记录失败：" );
             }
            
+        }
+
+        /// <summary>
+        /// 获取上一次的存款日期
+        /// </summary>
+        /// <returns>上一次存款日期</returns>
+        public virtual DateTime getLastDepositDate()
+        {
+            return MoneyInfo.dealDate;
         }
     }
 }

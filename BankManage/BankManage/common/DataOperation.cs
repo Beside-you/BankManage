@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using BankManage;
 using BankManage.money;
+using System.Windows;
 
 namespace BankManage.common
 {
@@ -38,11 +39,11 @@ namespace BankManage.common
         }
 
         /// <summary>
-        /// 根据存款类型创建开户账号
+        /// 根据存款类型创建开户账号，默认为活期类型
         /// </summary>
         /// <param name="accountType">存款类型</param>
         /// <returns></returns>
-        public static Custom CreateCustom(string accountType)
+        public static Custom CreateCustom(string accountType, string rateType)
         {
             //TODO:零存整取用户类
             Custom custom = null;
@@ -51,17 +52,24 @@ namespace BankManage.common
                 case "活期存款":
                     //创建活期存款类
                     custom = new CustomChecking();
+                    custom.AccountInfo.accountType = accountType;
+                    custom.AccountInfo.rateType = "活期";
                     break;
                 case "定期存款":
                     //创建定期存款类
                     custom = new CustomFixed();
+                    custom.AccountInfo.accountType = accountType;
+                    custom.AccountInfo.rateType = rateType;
                     break;
                 case "零存整取":
                     //创建零存整取类
                     custom = new CustomWhole();
+                    custom.AccountInfo.accountType = accountType;
+                    custom.AccountInfo.rateType = rateType;
                     break;
-            }
-            custom.AccountInfo.accountType = accountType;
+            };
+
+
             return custom;
         }
 
@@ -86,7 +94,8 @@ namespace BankManage.common
                     //返回唯一元素，若存在多个元素，抛出异常
                     var q = query.Single();
                     //创建操作信息记录类，并初始化操作账户信息
-                    custom = CreateCustom(q.accountType);
+                 
+                    custom = CreateCustom(q.accountType,q.rateType);
                     custom.AccountInfo.accountNo = accountNumber;
                     custom.AccountInfo.accountName = q.accountName;
                     custom.AccountInfo.accountPass = q.accountPass;
@@ -126,5 +135,27 @@ namespace BankManage.common
                      select t.rationValue).Single();
             return q.Value;
         }
+
+        //public static RateType GetFixedRateType(string accountNumber)
+        //{
+        //    DateTime depositDate;
+        //    DateTime now = DateTime.Now;
+        //    using(BankEntities context = new BankEntities())
+        //    {
+        //        var q = from t in context.MoneyInfo
+        //                where t.accountNo == accountNumber
+        //                select t;
+        //        try
+        //        {
+        //            depositDate = q.Single().dealDate;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message,"账号信息错误");
+        //            return RateType.
+        //        }
+        //    }
+
+        //}
     }
 }

@@ -30,8 +30,15 @@ namespace BankManage.money
         //存款
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
+            
             //根据操作账号id实例化对应的操作信息记录类
             Custom custom = DataOperation.GetCustom(this.txtAccount.Text);
+
+            if(custom.AccountInfo.accountType.Equals(MoneyAccountType.定期存款.ToString()))
+            {
+                MessageBox.Show("定期账户不可二次存款");
+                return;
+            }
 
             //若未找到对应账户信息
             if (custom == null)

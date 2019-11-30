@@ -24,6 +24,8 @@ namespace BankManage
         /// </summary>
         public override void Diposit(string genType, double money)
         {
+            //TODO:起存一百
+            //此处方法供开户之后的存款使用，存款时即结息
             base.Diposit("存款", money);
             //结算利息
             base.Diposit("结息", DataOperation.GetRate(RateType.活期) * money);
