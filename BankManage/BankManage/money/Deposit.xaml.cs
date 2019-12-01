@@ -21,7 +21,7 @@ namespace BankManage.money
     /// </summary>
     public partial class Deposit : Page
     {
-        //TODO:定期，零存整取类账户特别对待
+        
         public Deposit()
         {
             InitializeComponent();
@@ -36,14 +36,30 @@ namespace BankManage.money
 
             if(custom.AccountInfo.accountType.Equals(MoneyAccountType.定期存款.ToString()))
             {
-                MessageBox.Show("定期账户不可二次存款");
+                MessageBox.Show("定期账户不可二次存款！");
                 return;
             }
-
+            if(custom.AccountInfo.accountType.Equals(MoneyAccountType.零存整取.ToString()))
+            {
+                if(double.Parse(txtmount.Text) < 5)
+                {
+                    MessageBox.Show("零存整取五元起存！");
+                    return;
+                }
+            }
+            if(custom.AccountInfo.accountType.Equals(MoneyAccountType.活期存款.ToString()))
+            {
+                if(double.Parse(txtmount.Text) < 100)
+                {
+                    MessageBox.Show("活期存款一百元起存！");
+                    return;
+                }
+            }
             //若未找到对应账户信息
             if (custom == null)
             {
                 MessageBox.Show("帐号不存在！");
+
                 return;
             }
             //设置存取款操作的操作账号

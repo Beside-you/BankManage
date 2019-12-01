@@ -135,27 +135,68 @@ namespace BankManage.common
                      select t.rationValue).Single();
             return q.Value;
         }
+        
+        /// <summary>
+        /// 获取该账号上一次存款的时间
+        /// </summary>
+        /// <param name="accountNo">账号</param>
+        /// <returns></returns>
+        public static DateTime getLastDepositDate(string accountNo)
+        {
+            DateTime lastDate = DateTime.Now;
+            using(BankEntities context = new BankEntities())
+            {
+                
+                var q = from t in context.MoneyInfo
+                        where t.accountNo == accountNo
+                        select t.dealDate;
 
-        //public static RateType GetFixedRateType(string accountNumber)
-        //{
-        //    DateTime depositDate;
-        //    DateTime now = DateTime.Now;
-        //    using(BankEntities context = new BankEntities())
-        //    {
-        //        var q = from t in context.MoneyInfo
-        //                where t.accountNo == accountNumber
-        //                select t;
-        //        try
-        //        {
-        //            depositDate = q.Single().dealDate;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(ex.Message,"账号信息错误");
-        //            return RateType.
-        //        }
-        //    }
+                foreach(var date in q)
+                {
+                    lastDate = date;
+                }
+            }
+            return lastDate;
+        }
 
-        //}
+        /// <summary>
+        /// 获取该账号第一次存款的时间
+        /// </summary>
+        /// <param name="accountNo">时间</param>
+        /// <returns></returns>
+        public static DateTime getFirstDepositDate(string accountNo)
+        {
+            DateTime firstDate = DateTime.Now;
+            using(BankEntities context = new BankEntities())
+            {
+                var q = from t in context.MoneyInfo
+                        where t.accountNo == accountNo
+                        select t.dealDate;
+
+                firstDate = q.First();
+            }
+            return firstDate;
+        }
+
+        /// <summary>
+        /// 获取上一次存款
+        /// </summary>
+        /// <param name="accountNo"></param>
+        /// <returns></returns>
+        public static double getLastDeposit(string accountNo)
+        {
+            double money = 0;
+            using(BankEntities context = new BankEntities())
+            {
+                var q = from t in context.MoneyInfo
+                        where t.accountNo == accountNo
+                        select t;
+                foreach(var item in q)
+                {
+                    money = item.dealMoney;
+                }
+            }
+            return money;
+        }
     }
 }

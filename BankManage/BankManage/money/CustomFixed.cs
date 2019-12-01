@@ -46,7 +46,8 @@ namespace BankManage
             //TODO:一次性取款，为用户设置应取款项
             //取款时检查时间，设置对应利率，计算利息
             //上次存款时间
-            DateTime depositDate = getLastDepositDate();
+            DateTime depositDate = DataOperation.getLastDepositDate(AccountInfo.accountNo);
+            //MessageBox.Show(depositDate.ToString());
             //当前时间
             DateTime now = DateTime.Now;
             //获取时间差
@@ -72,11 +73,11 @@ namespace BankManage
             //定期三年
             else if(AccountInfo.rateType.Equals(RateType.定期3年.ToString()))
             {
-                if (ts.Days < 365)
+                if (ts.Days < 365 * 3)
                 {
                     type = RateType.定期提前支取;
                 }
-                else if(ts.Days == 365)
+                else if(ts.Days == 365 * 3)
                 {
                     type = RateType.定期3年;
                 }
@@ -89,11 +90,11 @@ namespace BankManage
             //定期五年
             else if(AccountInfo.rateType.Equals(RateType.定期5年.ToString()))
             {
-                if (ts.Days < 365)
+                if (ts.Days < 365 * 5)
                 {
                     type = RateType.定期提前支取;
                 }
-                else if(ts.Days == 365)
+                else if(ts.Days == 365 * 5)
                 {
                     type = RateType.定期5年;
                 }
@@ -104,6 +105,7 @@ namespace BankManage
                 }
             }
             //结息
+            //TODO:此处代码应该可以简化
             double interest = 0; ;
             if(type.Equals(RateType.定期提前支取))
             {
@@ -135,9 +137,11 @@ namespace BankManage
                 }
             }
             Diposit("结息", interest);
+            //取款，此处放在最后是因为取款时结息，因此要结息之后才判断是否超出
+            //同时也导致一个问题就是无论取款是否成功，结息都会完成
+            //TODO:此处结息后替用户设置应取金额
             //超出余额，无法取款
             if (!ValidBeforeWithdraw(money)) return;
-            //取款
             base.Withdraw(money);
         }
     }
