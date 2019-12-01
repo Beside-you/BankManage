@@ -150,5 +150,11 @@ namespace BankManage
         {
             return MoneyInfo.dealDate;
         }
+
+        public virtual DateTime getFirstDepositDate()
+        {
+            //var q = from t in context
+            //        where t.
+        }
     }
 }

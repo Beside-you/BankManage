@@ -30,6 +30,16 @@ namespace BankManage.money
         public override void Diposit(string genType, double money)
         {
             //TODO:起存五元，检测存款日期是否超出期限
+            DateTime lastDepositDate = getLastDepositDate();
+            DateTime now = DateTime.Now;
+
+            TimeSpan ts = now - lastDepositDate;
+
+            if(ts.Days > 30)
+            {
+                //超出存款期限
+                type = RateType.零存整取违规;
+            }
             base.Diposit(genType, money);
         }
 
