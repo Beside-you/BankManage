@@ -142,19 +142,5 @@ namespace BankManage
            
         }
 
-        /// <summary>
-        /// 获取上一次的存款日期
-        /// </summary>
-        /// <returns>上一次存款日期</returns>
-        public virtual DateTime getLastDepositDate()
-        {
-            return MoneyInfo.dealDate;
-        }
-
-        public virtual DateTime getFirstDepositDate()
-        {
-            //var q = from t in context
-            //        where t.
-        }
     }
 }
