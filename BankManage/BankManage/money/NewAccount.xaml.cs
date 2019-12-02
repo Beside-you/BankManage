@@ -42,6 +42,12 @@ namespace BankManage.money
         //开户
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("确定开通账户吗？", "提示", MessageBoxButton.OKCancel);
+            if (!(result == MessageBoxResult.OK))
+            {
+                return;
+            }
+           
             //如果不是零存整取，则一百元起存
             if (!comboBoxAccountType.SelectedItem.ToString().Equals(MoneyAccountType.零存整取.ToString()))
             {

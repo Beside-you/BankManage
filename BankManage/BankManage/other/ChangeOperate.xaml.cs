@@ -28,6 +28,12 @@ namespace BankManage.other
         //更改密码
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("确定修改密码？", "提示", MessageBoxButton.OKCancel);
+            if (!(result == MessageBoxResult.OK))
+            {
+                return;
+            }
+
             var query = from t in context.LoginInfo
                         where t.Bno == this.txtAccount.Text
                         select t;

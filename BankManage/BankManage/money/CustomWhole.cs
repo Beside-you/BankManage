@@ -30,7 +30,7 @@ namespace BankManage.money
         /// <param name="money"></param>
         public override void Diposit(string genType, double money)
         {
-            //TODO:每次存款固定金额，检测存款日期间隔是否合法
+            //每次存款固定金额，检测存款日期间隔是否合法
            
             // DateTime lastDepositDate = getLastDepositDate();
             DateTime lastDepositDate = DataOperation.getLastDepositDate(AccountInfo.accountNo);
@@ -144,12 +144,9 @@ namespace BankManage.money
                 Diposit("结息", interest);
                 //取款，此处放在最后是因为取款时结息，因此要结息之后才判断是否超出
                 //同时也导致一个问题就是无论取款是否成功，结息都会完成
-                //TODO:此处结息后替用户设置应取金额
-                if (!ValidBeforeWithdraw(money))
-                {
-                    return;
-                }
-                base.Withdraw(money);
+                double all = DataOperation.GetCustom(AccountInfo.accountNo).AccountBalance;
+                base.Withdraw(all);
+                
 
             }
         }

@@ -116,6 +116,9 @@
       <DependentUpon>BankModel.tt</DependentUpon>
     </Compile>
     <Compile Include="money\CustomWhole.cs" />
+    <Compile Include="other\ReportLoss.xaml.cs">
+      <DependentUpon>ReportLoss.xaml</DependentUpon>
+    </Compile>
     <Compile Include="query\DayQuery.xaml.cs">
       <DependentUpon>DayQuery.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
     <Page Include="other\ChangeOperate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="other\ReportLoss.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="query\DayQuery.xaml">
       <Generator>MSBuild:Compile</Generator>

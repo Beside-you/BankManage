@@ -38,6 +38,12 @@ namespace BankManage.employee
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("确定修改信息？", "提示", MessageBoxButton.OKCancel);
+            if (!(result == MessageBoxResult.OK))
+            {
+                return;
+            }
+
             try
             {
                 context.SaveChanges();
