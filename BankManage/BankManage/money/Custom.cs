@@ -95,7 +95,7 @@ namespace BankManage
                 MessageBox.Show("取款金额不能为零或负值");
                 return false;
             }
-            //TODO:考虑利息
+            
             if (money > AccountBalance)
             {
                 MessageBox.Show("取款数不能比余额大");

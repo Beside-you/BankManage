@@ -43,7 +43,6 @@ namespace BankManage
         /// <param name="money">取款金额</param>
         public override void Withdraw(double money)
         {
-            //TODO:一次性取款，为用户设置应取款项
             //取款时检查时间，设置对应利率，计算利息
             //上次存款时间
             DateTime depositDate = DataOperation.getLastDepositDate(AccountInfo.accountNo);
@@ -105,14 +104,13 @@ namespace BankManage
                 }
             }
             //结息
-            //TODO:此处代码应该可以简化
             double interest = 0; ;
             if(type.Equals(RateType.定期提前支取))
             {
                 //设置利息
                 interest = AccountBalance * DataOperation.GetRate(type);
             }
-            else if(type.Equals(RateType.定期1年))
+            else
             {
                 interest = AccountBalance * DataOperation.GetRate(type);
                 if(beyond)
@@ -120,29 +118,15 @@ namespace BankManage
                     interest = (interest + AccountBalance) * DataOperation.GetRate(RateType.定期超期部分);
                 }
             }
-            else if(type.Equals(RateType.定期3年))
-            {
-                interest = AccountBalance * DataOperation.GetRate(type);
-                if(beyond)
-                {
-                    interest = (interest + AccountBalance) * DataOperation.GetRate(RateType.定期超期部分);
-                }
-            }
-            else if(type.Equals(RateType.定期5年))
-            {
-                interest = AccountBalance * DataOperation.GetRate(type);
-                if(beyond)
-                {
-                    interest = (interest + AccountBalance) * DataOperation.GetRate(RateType.定期超期部分);
-                }
-            }
+
             Diposit("结息", interest);
             //取款，此处放在最后是因为取款时结息，因此要结息之后才判断是否超出
             //同时也导致一个问题就是无论取款是否成功，结息都会完成
-            //TODO:此处结息后替用户设置应取金额
-            //超出余额，无法取款
-            if (!ValidBeforeWithdraw(money)) return;
-            base.Withdraw(money);
+
+            //显示全部金额
+            double all = DataOperation.GetCustom(AccountInfo.accountNo).AccountBalance;
+            //MessageBox.Show("应取金额：" + all);
+            base.Withdraw(all);
         }
     }
 }

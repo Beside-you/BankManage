@@ -38,6 +38,11 @@ namespace BankManage.rateManage
         //保存
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("确定修改利率？", "提示", MessageBoxButton.OKCancel);
+            if (!(result == MessageBoxResult.OK))
+            {
+                return;
+            }
             try
             {
                 context.SaveChanges();

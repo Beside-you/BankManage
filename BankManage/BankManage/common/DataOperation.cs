@@ -45,7 +45,7 @@ namespace BankManage.common
         /// <returns></returns>
         public static Custom CreateCustom(string accountType, string rateType)
         {
-            //TODO:零存整取用户类
+           
             Custom custom = null;
             switch (accountType)
             {

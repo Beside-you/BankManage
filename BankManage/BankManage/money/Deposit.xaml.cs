@@ -30,7 +30,12 @@ namespace BankManage.money
         //存款
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            
+            MessageBoxResult result = MessageBox.Show("确定存款？", "提示", MessageBoxButton.OKCancel);
+            if (!(result == MessageBoxResult.OK))
+            {
+                return;
+            }
+
             //根据操作账号id实例化对应的操作信息记录类
             Custom custom = DataOperation.GetCustom(this.txtAccount.Text);
 

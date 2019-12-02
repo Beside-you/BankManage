@@ -28,6 +28,12 @@ namespace BankManage.money
         //取款
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("确定取款？", "提示", MessageBoxButton.OKCancel);
+            if (!(result == MessageBoxResult.OK))
+            {
+                return;
+            }
+
             //根据对应id创建业务记录
             Custom custom = DataOperation.GetCustom(this.txtAccount.Text);
 
@@ -38,7 +44,14 @@ namespace BankManage.money
                 return;
             }
             //执行取款操作
-            custom.Withdraw(double.Parse(this.txtmount.Text));
+            if (!this.txtmount.Text.Equals("全部金额"))
+            {
+                custom.Withdraw(double.Parse(this.txtmount.Text));
+            }
+            else
+            {
+                custom.Withdraw(0); 
+            }
 
             //导航到历史操作记录页面
             OperateRecord page = new OperateRecord();
@@ -52,6 +65,36 @@ namespace BankManage.money
             OperateRecord page = new OperateRecord();
             NavigationService ns = NavigationService.GetNavigationService(this);
             ns.Navigate(page);
+        }
+
+        /// <summary>
+        /// 设置定期存款和零存整取的应取金额
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtAccount_LostFocus(object sender, RoutedEventArgs e)
+        {
+            
+            using (BankEntities context = new BankEntities())
+            {
+                var q = from t in context.AccountInfo
+                        where t.accountNo == txtAccount.Text
+                        select t;
+                try
+                {
+                    if (q.Single().accountType == MoneyAccountType.定期存款.ToString() || q.Single().accountType == MoneyAccountType.零存整取.ToString())
+                    {
+                        //Custom custom = DataOperation.GetCustom(q.Single().accountNo);
+                        //txtmount.Text = custom.AccountBalance.ToString();
+                        txtmount.Text = "全部金额";
+                        txtmount.IsReadOnly = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("信息错误" + ex.Message);
+                }
+            }
         }
     }
 }

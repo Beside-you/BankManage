@@ -19,7 +19,7 @@ namespace BankManage
     /// </summary>
     public partial class Main : Window
     {
-        //TODO:信息验证
+        
         //TODO:帮助模块，操作帮助
         public Main()
         {
