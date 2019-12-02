@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 namespace BankManage.query
 {
+    //TODO:莫名奇妙的bug，总是会间隔性失灵
     /// <summary>
     /// DayQuery.xaml 的交互逻辑
     /// 当日汇总
