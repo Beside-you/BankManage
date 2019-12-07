@@ -38,13 +38,11 @@ namespace BankManage.money
             //MessageBox.Show(lastDepositDate.ToString());
 
             DateTime now = DateTime.Now;
-
-            TimeSpan ts = now - lastDepositDate;
-
+            //TimeSpan ts = now - lastDepositDate;
             //TODO:超出指定期限的违规存款是否判断为违规
             //存款违规
             double lastDeposit = DataOperation.getLastDeposit(AccountInfo.accountNo);
-            if(ts.Days > 30 || money != lastDeposit)
+            if((now.Year == lastDepositDate.Year && now.Month > lastDepositDate.Month + 1) || (now.Year - 1 == lastDepositDate.Year && now.Month == 1 && lastDepositDate.Month == 12) || money != lastDeposit)
             {
                 //超出存款期限,修改账户利率类型为违规利率
                 type = RateType.零存整取违规;

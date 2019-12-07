@@ -67,6 +67,11 @@ namespace BankManage.common
                     custom.AccountInfo.accountType = accountType;
                     custom.AccountInfo.rateType = rateType;
                     break;
+                case "个人贷款":
+                    custom = new CustomLoans();
+                    custom.AccountInfo.accountType = accountType;
+                    custom.AccountInfo.rateType = rateType;
+                    break;
             };
 
 
