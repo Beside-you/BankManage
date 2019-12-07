@@ -78,8 +78,8 @@ namespace BankManage.money
             //实例化操作查询页面，用以显示历史操作记录
             OperateRecord page = new OperateRecord();
 
-            //页面跳转，实现原理不清楚
-            NavigationService ns = NavigationService.GetNavigationService(this);  
+            //页面跳转
+            NavigationService ns = NavigationService.GetNavigationService(this);
             ns.Navigate(page);
         }
 
@@ -133,6 +133,15 @@ namespace BankManage.money
             {
                 RateTypeCom.Items.Add( RateType.活期.ToString());
                 RateTypeCom.SelectedIndex =  0;
+            }
+            else if(s.Equals(MoneyAccountType.个人贷款.ToString()))
+            {
+                rateTypeText.Visibility = Visibility.Visible;
+                RateTypeCom.Visibility = Visibility.Visible;
+                RateTypeCom.Items.Add(RateType.个人贷款1年.ToString());
+                RateTypeCom.Items.Add(RateType.个人贷款3年.ToString());
+                RateTypeCom.Items.Add(RateType.个人贷款5年.ToString());
+                RateTypeCom.SelectedIndex = 0;
             }
 
 

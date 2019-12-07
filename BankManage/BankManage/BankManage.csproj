@@ -115,6 +115,7 @@
     <Compile Include="MoneyInfo.cs">
       <DependentUpon>BankModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="money\CustomLoans.cs" />
     <Compile Include="money\CustomWhole.cs" />
     <Compile Include="other\ReportLoss.xaml.cs">
       <DependentUpon>ReportLoss.xaml</DependentUpon>
