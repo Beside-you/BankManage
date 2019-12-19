@@ -44,8 +44,8 @@ namespace BankManage
             //默认显示当前页面，（frame框架）
             this.frame1.Source = new Uri("money/OperateRecord.xaml", UriKind.Relative);
             //优先启动启动登陆窗体，阻塞模式
-            //LoginForm login = new LoginForm();
-            //login.ShowDialog();
+            LoginForm login = new LoginForm();
+            login.ShowDialog();
         }
     }
 }
