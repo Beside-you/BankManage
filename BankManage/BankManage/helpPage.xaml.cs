@@ -23,6 +23,35 @@ namespace BankManage
         public helpPage()
         {
             InitializeComponent();
+            comList.SelectedIndex = 0;
+            page1.Visibility = Visibility.Visible;
+        }
+
+        private void comList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            page1.Visibility = Visibility.Hidden;
+            page2.Visibility = Visibility.Hidden;
+            page3.Visibility = Visibility.Hidden;
+            page4.Visibility = Visibility.Hidden;
+            page5.Visibility = Visibility.Hidden;
+            switch (comList.SelectedIndex)
+            {
+                case 0:
+                    page1.Visibility = Visibility.Visible;
+                    break;
+                case 1:
+                    page2.Visibility = Visibility.Visible;
+                    break;
+                case 2:
+                    page3.Visibility = Visibility.Visible;
+                    break;
+                case 3:
+                    page4.Visibility = Visibility.Visible;
+                    break;
+                case 4:
+                    page5.Visibility = Visibility.Visible;
+                    break;
+            }
         }
     }
 }
