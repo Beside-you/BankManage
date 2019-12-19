@@ -52,7 +52,7 @@ namespace BankManage.other
                     try
                     {
                         
-                       if( !(q.Single().accountPass == txtPass.Text && q.Single().IdCard == txtId.Text))
+                       if( !(q.Single().accountPass == txtPass.Password && q.Single().IdCard == txtId.Text))
                         {
                             MessageBox.Show("信息有误！");
                             return;
@@ -77,7 +77,7 @@ namespace BankManage.other
                     accountNo = txtNewId.Text,
                     IdCard = txtId.Text,
                     accountName = q.Single().accountName,
-                    accountPass = txtNewPass.Text,
+                    accountPass = txtNewPass.Password,
                     accountType = q.Single().accountType
                 };
                 context.AccountInfo.Remove(q.Single());
