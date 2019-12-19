@@ -114,6 +114,12 @@
                     </Button>
                 </Expander>
                 <Expander Header="系统帮助">
+                    <Button Height="50" Width="60" Tag="./helpPage.xaml" Click="Button_Click">
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="images/btn1.png" Width="30" />
+                            <TextBlock Text="操作帮助" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
                 </Expander>
             </StackPanel>
         </ScrollViewer>
