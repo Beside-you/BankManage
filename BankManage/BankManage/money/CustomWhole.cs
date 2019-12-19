@@ -63,7 +63,7 @@ namespace BankManage.money
 
         public override void Withdraw(double money)
         {
-            //取款,
+            //取款
             //判断是否超期
             bool beyond = false;
             if (AccountInfo.rateType != RateType.零存整取违规.ToString())

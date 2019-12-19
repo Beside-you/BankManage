@@ -26,13 +26,13 @@
         <Label Grid.Row="1" Grid.Column ="0" Margin="10,10" Width="Auto" Height="30">账户：</Label>
         <TextBox x:Name="txtAccountNo" Grid.Row="1" Grid.Column="1" Margin="10,10" Width="150" Height="20" HorizontalAlignment="Left" ></TextBox>
         <Label Grid.Row="2" Grid.Column ="0" Margin="10,10" Width="Auto" Height="30">密码：</Label>
-        <TextBox x:Name="txtPass" Grid.Row="2" Grid.Column="1" Margin="10,10" Width="150" Height="20" HorizontalAlignment="Left" ></TextBox>
+        <PasswordBox x:Name="txtPass" Grid.Row="2" Grid.Column="1" Margin="10,10" Width="150" Height="20" HorizontalAlignment="Left" ></PasswordBox>
         <Label Grid.Row="3" Grid.Column ="0" Margin="10,10" Width="Auto" Height="30">身份证号：</Label>
         <TextBox x:Name="txtId" Grid.Row="3" Grid.Column="1" Margin="10,10" Width="150" Height="20" HorizontalAlignment="Left" ></TextBox>
         <Label Grid.Row="4" Grid.Column ="0" Margin="10,10" Width="Auto" Height="30">新账号：</Label>
         <TextBox x:Name="txtNewId" Grid.Row="4" Grid.Column="1" Margin="10,10" Width="150" Height="20" HorizontalAlignment="Left" ></TextBox>
         <Label Grid.Row="5" Grid.Column ="0" Margin="10,10" Width="Auto" Height="30">新密码：</Label>
-        <TextBox x:Name="txtNewPass" Grid.Row="5" Grid.Column="1" Margin="10,10" Width="150" Height="20" HorizontalAlignment="Left" ></TextBox>
+        <PasswordBox x:Name="txtNewPass" Grid.Row="5" Grid.Column="1" Margin="10,10" Width="150" Height="20" HorizontalAlignment="Left" ></PasswordBox>
         <Button x:Name="btnOk" Grid.Row="6" Grid.ColumnSpan="2" Width="50" Height="20" Margin="100,1,125,24" HorizontalAlignment="Center" Click="btnOk_Click">确认</Button>
     </Grid>
 
