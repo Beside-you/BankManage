@@ -20,9 +20,40 @@ namespace BankManage.employee
     /// </summary>
     public partial class EmployeeBase : Page
     {
+        BankEntities context = new BankEntities();
         public EmployeeBase()
         {
             InitializeComponent();
+            this.Unloaded += EmployeeBase_Unloaded;
+
+            var q = from t in context.EmployeeInfo
+                    select t;
+            dataGrid.ItemsSource = q.ToList();
+        }
+
+        public void EmployeeBase_Unloaded(object sender, RoutedEventArgs e)
+        {
+            context.Dispose();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("确定修改信息？", "提示", MessageBoxButton.OKCancel);
+            if (!(result == MessageBoxResult.OK))
+            {
+                return;
+            }
+
+            try
+            {
+                context.SaveChanges();
+                MessageBox.Show("保存成功");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "保存失败");
+            }
         }
     }
 }

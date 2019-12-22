@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 namespace BankManage.query
 {
+    //TODO:莫名奇妙的bug，总是会间隔性失灵
     /// <summary>
     /// DayQuery.xaml 的交互逻辑
     /// 当日汇总
@@ -25,11 +26,13 @@ namespace BankManage.query
         public DayQuery()
         {
             InitializeComponent();
+            //卸载页面事件
             this.Unloaded += DayQuery_Unloaded;
         }
-
+        //卸载事件
         void DayQuery_Unloaded(object sender, RoutedEventArgs e)
         {
+            //关闭实体数据模型，释放实例
             context.Dispose();
         }
 
@@ -41,14 +44,17 @@ namespace BankManage.query
                         where t.dealDate.Year == DateTime.Now.Year && t.dealDate.Month == DateTime.Now.Month  && t.dealDate.Day== DateTime.Now.Day
                         select t;
             this.datagrid1.ItemsSource = query.ToList();
+             
             //查询当日的总收入金额
             var query1 = from v in query
                          where v.dealType == "开户" || v.dealType == "存款"
                          select v.dealMoney;
+
             //查询当日的总支出金额
             var query2 = from m in query
                          where m.dealType == "结息" || m.dealType == "取款"
                          select m.dealMoney;
+
             if (query1.Count() != 0 && query2.Count() != 0)
             {
                 var s1 = query1.Sum();
@@ -60,9 +66,7 @@ namespace BankManage.query
                 datagrid1.Visibility = Visibility.Hidden;
                 this.textTotal.Text = "当日没有任何交易记录！";
 
-            }
-        
-            
+            }    
         }
     }
 }

@@ -24,7 +24,7 @@
             </Grid.RowDefinitions>
             <TextBlock Text="存款" FontSize="20" TextAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2" ></TextBlock>
             <TextBlock Margin="7"  Grid.Row="1">账号：</TextBlock>
-            <TextBox Name="txtAccount" Margin="5" Grid.Column="1"  Grid.Row="1"></TextBox>
+            <TextBox Name="txtAccount" Margin="5" Grid.Column="1"  Grid.Row="1" LostFocus="txtAccount_LostFocus"></TextBox>
             <TextBlock Margin="7"  Grid.Row="2">存款金额：</TextBlock>
             <TextBox Name="txtmount" Margin="5" Grid.Column="1"  Grid.Row="2"></TextBox>
             <StackPanel Grid.Row="4" HorizontalAlignment="Center" Grid.ColumnSpan="2" Orientation="Horizontal" >

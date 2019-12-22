@@ -10,7 +10,7 @@
         <DataGrid Name="dataGrid1" AutoGenerateColumns="False"
                 Background="#FFDDFBF9">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="存款类型" Binding="{Binding rationType}" Width="150" />
+                <DataGridTextColumn Header="存款类型" Binding="{Binding rationType}" Width="150" CanUserReorder="False" CanUserResize="False" />
                 <DataGridTextColumn Header="利率" Binding="{Binding rationValue}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>

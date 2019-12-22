@@ -103,6 +103,9 @@
     <Compile Include="EmployeeInfo.cs">
       <DependentUpon>BankModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="helpPage.xaml.cs">
+      <DependentUpon>helpPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.xaml.cs">
       <DependentUpon>LoginForm.xaml</DependentUpon>
     </Compile>
@@ -114,6 +117,11 @@
     </Compile>
     <Compile Include="MoneyInfo.cs">
       <DependentUpon>BankModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="money\CustomLoans.cs" />
+    <Compile Include="money\CustomWhole.cs" />
+    <Compile Include="other\ReportLoss.xaml.cs">
+      <DependentUpon>ReportLoss.xaml</DependentUpon>
     </Compile>
     <Compile Include="query\DayQuery.xaml.cs">
       <DependentUpon>DayQuery.xaml</DependentUpon>
@@ -138,6 +146,10 @@
     <Page Include="help.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="helpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LoginForm.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -182,6 +194,10 @@
     <Page Include="other\ChangeOperate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="other\ReportLoss.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="query\DayQuery.xaml">
       <Generator>MSBuild:Compile</Generator>

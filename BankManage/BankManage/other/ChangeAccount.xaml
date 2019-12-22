@@ -8,8 +8,8 @@
 	Title="ChangeEmployee">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="31*"></RowDefinition>
+            <RowDefinition Height="29*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -31,7 +31,7 @@
             <TextBlock Margin="7"  Grid.Row="3">确认新密码：</TextBlock>
             <PasswordBox Name="txtPassConf" Margin="5" Grid.Column="1"  Grid.Row="3"></PasswordBox>
             <StackPanel Grid.Row="4" HorizontalAlignment="Center" Grid.ColumnSpan="2" Orientation="Horizontal" >
-                 <Button Name="btnOk"  Width="50" Margin="10,10,2,10" Padding="3" Click="btnOk_Click">确定</Button>
+                <Button Name="btnOk"  Width="50" Margin="10,10,2,10" Padding="3" Click="btnOk_Click">确定</Button>
                 <Button Name="btnCancel"  Width="50" Margin="2,10,10,10" Padding="3" Click="btnCancel_Click">取消</Button>
             </StackPanel>
         </Grid>

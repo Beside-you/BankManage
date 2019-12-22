@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using BankManage;
+using BankManage.money;
+using System.Windows;
 
 namespace BankManage.common
 {
@@ -37,29 +39,42 @@ namespace BankManage.common
         }
 
         /// <summary>
-        /// 根据存款类型创建开户账号
+        /// 根据存款类型创建开户账号，默认为活期类型
         /// </summary>
         /// <param name="accountType">存款类型</param>
         /// <returns></returns>
-        public static Custom CreateCustom(string accountType)
+        public static Custom CreateCustom(string accountType, string rateType)
         {
-            //TODO:零存整取用户类
+           
             Custom custom = null;
             switch (accountType)
             {
                 case "活期存款":
                     //创建活期存款类
                     custom = new CustomChecking();
+                    custom.AccountInfo.accountType = accountType;
+                    custom.AccountInfo.rateType = "活期";
                     break;
                 case "定期存款":
                     //创建定期存款类
                     custom = new CustomFixed();
+                    custom.AccountInfo.accountType = accountType;
+                    custom.AccountInfo.rateType = rateType;
                     break;
                 case "零存整取":
                     //创建零存整取类
+                    custom = new CustomWhole();
+                    custom.AccountInfo.accountType = accountType;
+                    custom.AccountInfo.rateType = rateType;
                     break;
-            }
-            custom.AccountInfo.accountType = accountType;
+                case "个人贷款":
+                    custom = new CustomLoans();
+                    custom.AccountInfo.accountType = accountType;
+                    custom.AccountInfo.rateType = rateType;
+                    break;
+            };
+
+
             return custom;
         }
 
@@ -84,7 +99,8 @@ namespace BankManage.common
                     //返回唯一元素，若存在多个元素，抛出异常
                     var q = query.Single();
                     //创建操作信息记录类，并初始化操作账户信息
-                    custom = CreateCustom(q.accountType);
+                 
+                    custom = CreateCustom(q.accountType,q.rateType);
                     custom.AccountInfo.accountNo = accountNumber;
                     custom.AccountInfo.accountName = q.accountName;
                     custom.AccountInfo.accountPass = q.accountPass;
@@ -123,6 +139,69 @@ namespace BankManage.common
                      where t.rationType == type
                      select t.rationValue).Single();
             return q.Value;
+        }
+        
+        /// <summary>
+        /// 获取该账号上一次存款的时间
+        /// </summary>
+        /// <param name="accountNo">账号</param>
+        /// <returns></returns>
+        public static DateTime getLastDepositDate(string accountNo)
+        {
+            DateTime lastDate = DateTime.Now;
+            using(BankEntities context = new BankEntities())
+            {
+                
+                var q = from t in context.MoneyInfo
+                        where t.accountNo == accountNo
+                        select t.dealDate;
+
+                foreach(var date in q)
+                {
+                    lastDate = date;
+                }
+            }
+            return lastDate;
+        }
+
+        /// <summary>
+        /// 获取该账号第一次存款的时间
+        /// </summary>
+        /// <param name="accountNo">时间</param>
+        /// <returns></returns>
+        public static DateTime getFirstDepositDate(string accountNo)
+        {
+            DateTime firstDate = DateTime.Now;
+            using(BankEntities context = new BankEntities())
+            {
+                var q = from t in context.MoneyInfo
+                        where t.accountNo == accountNo
+                        select t.dealDate;
+
+                firstDate = q.First();
+            }
+            return firstDate;
+        }
+
+        /// <summary>
+        /// 获取上一次存款
+        /// </summary>
+        /// <param name="accountNo"></param>
+        /// <returns></returns>
+        public static double getLastDeposit(string accountNo)
+        {
+            double money = 0;
+            using(BankEntities context = new BankEntities())
+            {
+                var q = from t in context.MoneyInfo
+                        where t.accountNo == accountNo
+                        select t;
+                foreach(var item in q)
+                {
+                    money = item.dealMoney;
+                }
+            }
+            return money;
         }
     }
 }

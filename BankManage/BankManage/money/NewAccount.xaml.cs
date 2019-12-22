@@ -42,20 +42,44 @@ namespace BankManage.money
         //开户
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            //初始化业务信息类为开户，开户业务类型为选中类型
-            Custom custom = DataOperation.CreateCustom(comboBoxAccountType.SelectedItem.ToString());
+            MessageBoxResult result = MessageBox.Show("确定开通账户吗？", "提示", MessageBoxButton.OKCancel);
+            if (!(result == MessageBoxResult.OK))
+            {
+                return;
+            }
+           
+            //如果不是零存整取，则一百元起存
+            if (!comboBoxAccountType.SelectedItem.ToString().Equals(MoneyAccountType.零存整取.ToString()))
+            {
+                if(double.Parse(txtMoney.Text) < 100)
+                {
+                    MessageBox.Show("100元起存！");
+                    return;
+                }
+            }
+            else//零存整取五元起存
+            {
+                if(double.Parse(txtMoney.Text) < 5)
+                {
+                    MessageBox.Show("五元起存");
+                    return;
+                }
+            }
+
+            //初始化业务信息类为开户，开户业务类型为选中类型,开户利率类别为选中类别
+            Custom custom = DataOperation.CreateCustom(comboBoxAccountType.SelectedItem.ToString(),RateTypeCom.SelectedItem.ToString());
             //设置账户基本信息
             custom.AccountInfo.accountNo = this.txtAccountNo.Text;//账户
             custom.AccountInfo.IdCard = this.txtIDCard.Text;//身份证号
             custom.AccountInfo.accountName = this.txtAccountName.Text;//账户名
             custom.AccountInfo.accountPass = this.txtPass.Password;//密码
             //创建操作记录基本信息
-            custom.Create(this.txtAccountNo.Text, double.Parse(this.txtMoney.Text));
+            custom.Create( this.txtAccountNo.Text, double.Parse( this.txtMoney.Text));
             //实例化操作查询页面，用以显示历史操作记录
             OperateRecord page = new OperateRecord();
 
-            //页面跳转，实现原理不清楚
-            NavigationService ns = NavigationService.GetNavigationService(this);  
+            //页面跳转
+            NavigationService ns = NavigationService.GetNavigationService(this);
             ns.Navigate(page);
         }
 
@@ -78,6 +102,48 @@ namespace BankManage.money
         {
             //获取选中的类型
             string s = comboBoxAccountType.SelectedItem.ToString();
+            rateTypeText.Visibility = Visibility.Hidden;
+            RateTypeCom.Visibility = Visibility.Hidden;
+
+            RateTypeCom.Items.Clear();
+            //显示期限选择栏
+            //设置Combox中的枚举值然后实现切换隐藏
+            if (s.Equals(MoneyAccountType.定期存款.ToString()))
+            {
+                rateTypeText.Visibility = Visibility.Visible;
+                RateTypeCom.Visibility = Visibility.Visible;
+
+                
+                RateTypeCom.Items.Add(RateType.定期1年.ToString());
+                RateTypeCom.Items.Add(RateType.定期3年.ToString());
+                RateTypeCom.Items.Add(RateType.定期5年.ToString());
+                RateTypeCom.SelectedIndex = 0;
+                //string[] rateType = {""}
+            }
+            else if(s.Equals(MoneyAccountType.零存整取.ToString()))
+            {
+                rateTypeText.Visibility = Visibility.Visible;
+                RateTypeCom.Visibility = Visibility.Visible;
+                RateTypeCom.Items.Add(RateType.零存整取1年.ToString());
+                RateTypeCom.Items.Add(RateType.零存整取3年.ToString());
+                RateTypeCom.Items.Add(RateType.零存整取5年.ToString());
+                RateTypeCom.SelectedIndex = 0;
+            }
+            else if(s.Equals(MoneyAccountType.活期存款.ToString()))
+            {
+                RateTypeCom.Items.Add( RateType.活期.ToString());
+                RateTypeCom.SelectedIndex =  0;
+            }
+            else if(s.Equals(MoneyAccountType.个人贷款.ToString()))
+            {
+                rateTypeText.Visibility = Visibility.Visible;
+                RateTypeCom.Visibility = Visibility.Visible;
+                RateTypeCom.Items.Add(RateType.个人贷款1年.ToString());
+                RateTypeCom.Items.Add(RateType.个人贷款3年.ToString());
+                RateTypeCom.Items.Add(RateType.个人贷款5年.ToString());
+                RateTypeCom.SelectedIndex = 0;
+            }
+
 
             using(BankEntities c = new BankEntities())
             {

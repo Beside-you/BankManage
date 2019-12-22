@@ -21,10 +21,12 @@ namespace BankManage.rateManage
     public partial class ratePage : Page
     {
         BankEntities context = new BankEntities();
+
         public ratePage()
         {
             InitializeComponent();
             this.Unloaded += ratePage_Unloaded;
+            //查询利率设置信息
             var q = from t in context.RateInfo
                     select t;
             dataGrid1.ItemsSource = q.ToList();
@@ -36,6 +38,11 @@ namespace BankManage.rateManage
         //保存
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("确定修改利率？", "提示", MessageBoxButton.OKCancel);
+            if (!(result == MessageBoxResult.OK))
+            {
+                return;
+            }
             try
             {
                 context.SaveChanges();

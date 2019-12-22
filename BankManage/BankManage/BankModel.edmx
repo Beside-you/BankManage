@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccountInfo">
           <Key>
             <PropertyRef Name="accountNo" />
@@ -14,6 +14,7 @@
           <Property Name="accountName" Type="nvarchar" MaxLength="20" />
           <Property Name="accountPass" Type="nvarchar" MaxLength="20" />
           <Property Name="accountType" Type="nvarchar" MaxLength="8" />
+          <Property Name="rateType" Type="nvarchar" MaxLength="8" />
         </EntityType>
         <EntityType Name="EmployeeInfo">
           <Key>
@@ -26,6 +27,7 @@
           <Property Name="telphone" Type="nvarchar" MaxLength="11" />
           <Property Name="idCard" Type="nchar" MaxLength="18" />
           <Property Name="photo" Type="varbinary(max)" />
+          <Property Name="salary" Type="float" />
         </EntityType>
         <EntityType Name="LoginInfo">
           <Key>
@@ -59,8 +61,7 @@
           <EntitySet Name="MoneyInfo" EntityType="Self.MoneyInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RateInfo" EntityType="Self.RateInfo" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -73,6 +74,7 @@
           <Property Name="accountName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="accountPass" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="accountType" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="rateType" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EmployeeInfo">
           <Key>
@@ -85,6 +87,7 @@
           <Property Name="telphone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="idCard" Type="String" MaxLength="18" FixedLength="true" Unicode="true" />
           <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="salary" Type="Double" />
         </EntityType>
         <EntityType Name="LoginInfo">
           <Key>
@@ -127,6 +130,7 @@
           <EntitySetMapping Name="AccountInfo">
             <EntityTypeMapping TypeName="BankModel.AccountInfo">
               <MappingFragment StoreEntitySet="AccountInfo">
+                <ScalarProperty Name="rateType" ColumnName="rateType" />
                 <ScalarProperty Name="accountNo" ColumnName="accountNo" />
                 <ScalarProperty Name="IdCard" ColumnName="IdCard" />
                 <ScalarProperty Name="accountName" ColumnName="accountName" />
@@ -138,6 +142,7 @@
           <EntitySetMapping Name="EmployeeInfo">
             <EntityTypeMapping TypeName="BankModel.EmployeeInfo">
               <MappingFragment StoreEntitySet="EmployeeInfo">
+                <ScalarProperty Name="salary" ColumnName="salary" />
                 <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
                 <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
                 <ScalarProperty Name="sex" ColumnName="sex" />
