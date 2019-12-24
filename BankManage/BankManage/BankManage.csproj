@@ -103,6 +103,12 @@
     <Compile Include="EmployeeInfo.cs">
       <DependentUpon>BankModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="employee\addWindow.xaml.cs">
+      <DependentUpon>addWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="employee\InfoWindow.xaml.cs">
+      <DependentUpon>InfoWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="helpPage.xaml.cs">
       <DependentUpon>helpPage.xaml</DependentUpon>
     </Compile>
@@ -135,6 +141,10 @@
     <Compile Include="rateManage\ratePage.xaml.cs">
       <DependentUpon>ratePage.xaml</DependentUpon>
     </Compile>
+    <Page Include="employee\addWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="employee\ChangePay.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -142,6 +152,10 @@
     <Page Include="employee\EmployeeBase.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="employee\InfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="help.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -4,6 +4,10 @@
              StartupUri="Main.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <DataTemplate x:Key="workDateTemplate">
+                <TextBlock Text="{Binding workDate,StringFormat={}{0:yyyy-MM-dd} }"></TextBlock>
+                
+            </DataTemplate>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resource/DataGridColumnTemplate.xaml" />
                 <ResourceDictionary Source="/Resource/DataGridStyle.xaml" />
