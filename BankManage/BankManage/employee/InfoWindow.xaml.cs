@@ -64,6 +64,7 @@ namespace BankManage.employee
                     img.BeginInit();
                     img.StreamSource = ms;
                     img.EndInit();
+                    this.photoBox.Source = img;
                 }
             }
             catch(Exception e)
@@ -117,6 +118,7 @@ namespace BankManage.employee
                     Stream stream = File.OpenRead(photoPath);
                     byte[] buffer = new byte[stream.Length];
                     stream.Read(buffer, 0, (int)stream.Length);
+                    
                     employee.photo = buffer;
                 }
 
