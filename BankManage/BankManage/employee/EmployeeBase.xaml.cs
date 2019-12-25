@@ -38,22 +38,57 @@ namespace BankManage.employee
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("确定修改信息？", "提示", MessageBoxButton.OKCancel);
-            if (!(result == MessageBoxResult.OK))
+            
+            //更新员工信息
+            var item = dataGrid.SelectedItem as EmployeeInfo;
+            if(item == null)
             {
+                MessageBox.Show("请选择要更新的信息");
+                return;
+            }
+            string employeeNo = item.EmployeeNo;
+            InfoWindow updateWindow = new InfoWindow(employeeNo);
+            updateWindow.ShowDialog();
+           
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var item = dataGrid.SelectedItem as EmployeeInfo;
+            
+            if(item == null)
+            {
+                MessageBox.Show("请选择要删除的信息！");
                 return;
             }
 
-            try
+            MessageBoxResult result = MessageBox.Show("确定删除选中信息？", "删除确认", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if(result == MessageBoxResult.Yes)
             {
-                context.SaveChanges();
-                MessageBox.Show("保存成功");
+                var q = from t in context.EmployeeInfo
+                        where t.EmployeeNo == item.EmployeeNo
+                        select t;
+                if(q != null)
+                {
+                    try
+                    {
+                        context.EmployeeInfo.Remove(q.FirstOrDefault());
+                        int i = context.SaveChanges();
+                        MessageBox.Show("删除" + i + "条记录");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("删除失败");
+                    }
+                }
+            }
+        }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "保存失败");
-            }
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+            addWindow addWindow = new addWindow();
+            addWindow.ShowDialog();
         }
     }
 }

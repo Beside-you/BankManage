@@ -13,12 +13,14 @@
                 <DataGridTextColumn Header="员工号" Binding="{Binding EmployeeNo}" Width="50" CanUserReorder="False" CanUserResize="False" CanUserSort="False" />
                 <DataGridTextColumn Header="员工姓名" Binding="{Binding EmployeeName}" Width="*" />
                 <DataGridTextColumn Header="性别" Binding="{Binding sex}" Width="50" />
-                <DataGridTextColumn Header="入职日期" Binding="{Binding workDate}" Width="*" />
+                <DataGridTemplateColumn Header="入职日期"  CellTemplate="{StaticResource workDateTemplate}" Width="*" />
                 <DataGridTextColumn Header="联系方式" Binding="{Binding telphone}" Width="*" />
                 <DataGridTextColumn Header="身份证号" Binding="{Binding idCard}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="保存" Width="70" Margin="0 10 0 0" Click="Button_Click"/>
+        <Button Content="更新" Width="70" Margin="-50,10,123,0" Click="Button_Click"/>
+        <Button Content="添加" Width="70" Margin="180,-20,0,0" Click="Button_Click_2"/>
+        <Button Content="删除" Width="70" Margin="5,-20,0,0" Click="Button_Click_1"/>
     </StackPanel>
 
 </Page>
