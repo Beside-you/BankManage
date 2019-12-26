@@ -1,0 +1,29 @@
+﻿<Window x:Class="BankManage.employee.InfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BankManage.employee"
+        mc:Ignorable="d"
+        Title="InfoWindow" Height="463.2" Width="390.4">
+    <Grid>
+        <Label Content="职工姓名" HorizontalAlignment="Left" Margin="49,38,0,0" VerticalAlignment="Top"/>
+        <Label Content="职工号" HorizontalAlignment="Left" Margin="49,80,0,0" VerticalAlignment="Top"/>
+        <Label Content="性别" HorizontalAlignment="Left" Margin="49,122,0,0" VerticalAlignment="Top"/>
+        <Label Content="入职时间" HorizontalAlignment="Left" Margin="49,163,0,0" VerticalAlignment="Top"/>
+        <Label Content="联系方式" HorizontalAlignment="Left" Margin="49,207,0,0" VerticalAlignment="Top"/>
+        <Label Content="身份证号" HorizontalAlignment="Left" Margin="49,249,0,0" VerticalAlignment="Top"/>
+        <Label Content="照片" HorizontalAlignment="Left" Margin="49,291,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="nameBox" HorizontalAlignment="Left" Height="23" Margin="128,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
+        <TextBox x:Name="numberBox" HorizontalAlignment="Left" Height="23" Margin="128,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
+        <RadioButton x:Name="manButton" Content="男" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="128,128,0,0" GroupName="sex" IsChecked="True"/>
+        <RadioButton x:Name="womanButton" Content="女" HorizontalAlignment="Left" Margin="180,128,0,0" VerticalAlignment="Top" GroupName="sex" IsChecked="True"/>
+        <TextBox x:Name="phoneBox" HorizontalAlignment="Left" Height="23" Margin="128,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
+        <TextBox x:Name="idBox" HorizontalAlignment="Left" Height="23" Margin="128,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
+        <Image x:Name="photoBox" Margin="128,302,171,36"/>
+        <Button x:Name="uploadButton" Content="上传照片" HorizontalAlignment="Left" Margin="247,302,0,0" VerticalAlignment="Top" Width="75" Click="uploadButton_Click"/>
+        <Button x:Name="saveButton" Content="保存" HorizontalAlignment="Left" Margin="247,403,0,0" VerticalAlignment="Top" Width="45" Click="saveButton_Click"/>
+        <Button x:Name="cancelButton" Content="取消" HorizontalAlignment="Left" Margin="312,403,0,0" VerticalAlignment="Top" Width="41" Click="cancelButton_Click"/>
+        <DatePicker x:Name="dateBox" HorizontalAlignment="Left" Margin="128,164,0,0" VerticalAlignment="Top" Width="151"/>
+    </Grid>
+</Window>
