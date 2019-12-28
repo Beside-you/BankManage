@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="loansModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="名字" />
+          </Key>
+          <Property Name="名字" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="贷款金额" Type="int" Nullable="false" />
+          <Property Name="贷款年份" Type="int" Nullable="false" />
+          <Property Name="贷款月份" Type="int" Nullable="false" />
+          <Property Name="贷款日期" Type="int" Nullable="false" />
+          <Property Name="学号" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="loansModelStoreContainer">
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="loansModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="名字" />
+          </Key>
+          <Property Name="名字" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="贷款金额" Type="Int32" Nullable="false" />
+          <Property Name="贷款年份" Type="Int32" Nullable="false" />
+          <Property Name="贷款月份" Type="Int32" Nullable="false" />
+          <Property Name="贷款日期" Type="Int32" Nullable="false" />
+          <Property Name="学号" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="loansEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Table" EntityType="Self.Table" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="loansModelStoreContainer" CdmEntityContainer="loansEntities">
+          <EntitySetMapping Name="Table">
+            <EntityTypeMapping TypeName="loansModel.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="名字" ColumnName="名字" />
+                <ScalarProperty Name="贷款金额" ColumnName="贷款金额" />
+                <ScalarProperty Name="贷款年份" ColumnName="贷款年份" />
+                <ScalarProperty Name="贷款月份" ColumnName="贷款月份" />
+                <ScalarProperty Name="贷款日期" ColumnName="贷款日期" />
+                <ScalarProperty Name="学号" ColumnName="学号" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
